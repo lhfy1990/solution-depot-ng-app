@@ -1,0 +1,103 @@
+<div class="hero is-info" [ngClass]="{'is-fullheight': router.url==='/home'}">
+    <div class="hero-head">
+        <header class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" routerLink="/home">
+                        <figure class="image is-32x32">
+                            <img src="favicon.ico" alt="Logo" class="is-inverted">
+                        </figure>
+                        Solution Depot
+                    </a>
+                    <span class="navbar-burger burger" (click)="toggle_burger()" [ngClass]="{'is-active': is_active_burger}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div class="navbar-menu" [ngClass]="{'is-active': is_active_burger}">
+                    <div class="navbar-end">
+                        <a class="navbar-item" routerLink="/home" [ngClass]="{'is-active':router.url==='/home'}">
+                            Home
+                        </a>
+                        <a class="navbar-item" routerLink="/problems" [ngClass]="{'is-active':router.rul==='/problems'}">
+                            Problems
+                        </a>
+                        <a class="navbar-item" routerLink="/dashboard" [ngClass]="{'is-active':router.url==='/dashboard'}">
+                            Dashboard
+                        </a>
+                        <span class="navbar-item">
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <a class="button is-info is-inverted" (click)="signup()">
+                                        <span class="icon">
+                                            <i class="fas fa-user-plus fa-fw"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info is-inverted" (click)="signin()">
+                                        <span class="icon">
+                                            <i class="fas fa-sign-in-alt fa-fw"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Modal title</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <div class="hero-body" *ngIf="router.url==='/home'">
+        <div class="container">
+            <div class="media">
+                <figure class="media-left image is-128x128">
+                    <img src="favicon.ico" alt="Logo" class="is-16x16 is-inverted">
+                </figure>
+                <div class="media-conten is-hidden-mobile">
+                    <h1 class="title is-1 is-spaced">Solution Depot</h1>
+                    <h4 class="subtitle is-4">A Depot Storage for Solutions, running on Bulma, FontAwesome, Angular and NodeJS.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-foot" *ngIf="router.url==='/home'">
+        <div class="container has-text-centered">
+            <p>Contributed by LHFY1990. <a href="https://github.com/lhfy1990/solution-depot" target="_blank"><span class="is-hidden-touch">View Source on Github</span><span class="icon"><i class="fab fa-github fa-fw"></i></span></a></p>
+        </div>
+    </div>
+</div>
+<div class="modal" [ngClass]="{'is-active':is_active_modal}">
+    <div class="modal-background" (click)="closeModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Sign {{is_signin ? 'In' : 'Up'}}</p>
+            <button class="delete" aria-label="close" (click)="closeModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <form>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" [ngClass]="{'is-outlined': !is_signin}" (click)="submit()">Sign {{is_signin ? 'In' : 'Up'}}</button>
+            <button class="button" (click)="closeModal()">Cancel</button>
+        </footer>
+    </div>
+</div>

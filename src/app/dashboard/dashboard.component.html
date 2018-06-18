@@ -1,0 +1,76 @@
+<div app-header></div>
+<section class="section">
+    <div class="container">
+        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="is-active"><a href="#!dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="level">
+            <div class="tile is-ancestor">
+                <div class="tile is-8 is-vertical is-parent">
+                    <div class="tile is-child card">
+                        <div class="card-header">
+                            <div class="card-header-title level is-mobile">
+                                <div class="level-left">
+                                    {{user.nickname || user._id}}
+                                </div>
+                                <div class="level-right">
+                                    <button class="button is-white" (click)="toggleEditUser()"><span class="icon" [ngClass]="{'has-text-success':isEditUser}"><i class="fas fa-fw" [ngClass]="{'fa-pencil-alt':!isEditUser,'fa-check':isEditUser}"></i></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="field">
+                                <label class="label">ID</label>
+                                <div class="control">
+                                    <input class="input is-static" type="input" readonly [(ngModel)]="user._id">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="input_nickname">Nickname</label>
+                                <div class="control">
+                                    <input class="input is-static" type="input" readonly [(ngModel)]="user.nickname" *ngIf="!isEditUser">
+                                    <input class="input" type="input" id="input_nickname" [(ngModel)]="editedUser.nickname" *ngIf="isEditUser">
+                                </div>
+                            </div>
+                            <div class="field" *ngIf="isEditUser">
+                                <label class="label" for="input_password">Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" id="input_password" [(ngModel)]="editedUser.password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile is-child card">
+                        <div class="card-header">
+                            <div class="card-header-title level is-mobile">
+                                Notebook
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tile is-4 is-parent">
+                    <div class="tile is-child card">
+                            <div class="card-header-title level is-mobile">
+                                Solutions
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section is-cliped is-overlay" style="top: auto">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6 is-offset-6">
+                    <div class="notification is-marginless" *ngFor="let message of messages" [ngClass]="'is-'+message.type">{{message.text}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<app-footer></app-footer>
