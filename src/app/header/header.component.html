@@ -29,16 +29,23 @@
                         <span class="navbar-item">
                             <div class="field is-grouped">
                                 <div class="control">
-                                    <a class="button is-info is-inverted" (click)="signup()">
+                                    <a class="button is-info is-inverted" *ngIf="!user._id" (click)="signup()">
                                         <span class="icon">
                                             <i class="fas fa-user-plus fa-fw"></i>
                                         </span>
                                     </a>
                                 </div>
                                 <div class="control">
-                                    <a class="button is-info is-inverted" (click)="signin()">
+                                    <a class="button is-info is-inverted" *ngIf="!user._id" (click)="signin()">
                                         <span class="icon">
                                             <i class="fas fa-sign-in-alt fa-fw"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info is-inverted" *ngIf="user._id" (click)="signout()">
+                                        <span class="icon">
+                                            <i class="fas fa-sign-out-alt fa-fw"></i>
                                         </span>
                                     </a>
                                 </div>
@@ -48,22 +55,6 @@
                 </div>
             </div>
         </header>
-        <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Modal title</p>
-                    <button class="delete" aria-label="close"></button>
-                </header>
-                <section class="modal-card-body">
-                    <!-- Content ... -->
-                </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
-                </footer>
-            </div>
-        </div>
     </div>
     <div class="hero-body" *ngIf="router.url==='/home'">
         <div class="container">
@@ -93,6 +84,19 @@
         </header>
         <section class="modal-card-body">
             <form>
+                <div class="field">
+                    <label class="label" for="modal_username">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" name="modal_username" placeholder="Your Username" [(ngModel)]="modal_user._id">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="modal_password">Password</label>
+                    <div class="control">
+                        <input class="input" type="password" name="modal_password" [(ngModel)]="modal_user.password" (keyup.enter)="submit()">
+                    </div>
+                    <p class="help is-danger">{{modal_message}}</p>
+                </div>
             </form>
         </section>
         <footer class="modal-card-foot">

@@ -1,52 +1,77 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpModule, Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs';
+
+import { UsersService } from '../users.service';
+import { User } from '../user.model';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    private is_active_burger: Boolean = false;
-    private is_active_modal: Boolean = false;
-    private is_signin: Boolean = false;
+  private is_active_burger: boolean = false;
+  private is_active_modal: boolean = false;
+  private is_signin: boolean = false;
+  private user: User;
+  private modal_message: string;
+  private modal_user: User;
 
-    constructor(private router: Router) {
-        this.router = router;
-    }
+  constructor(private router: Router, private http: Http, public usersService: UsersService) {
+    this.router = router;
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit(): void {
+    this.usersService.setCurrentUser(new User());
+    this.usersService.currentUser.subscribe((newUser) => {
+      this.user = newUser;
+    });
+    this.modal_user = new User();
+  }
 
-    toggle_burger() {
-        this.is_active_burger = !this.is_active_burger;
-    }
+  private toggle_burger(): void {
+    this.is_active_burger = !this.is_active_burger;
+  }
 
-    signup() {
-        this.is_active_modal = true;
-        this.is_signin = false;
-        console.log('signup');
-        // TODO: please implement
-    }
+  private signup(): void {
+    this.is_active_modal = true;
+    this.is_signin = false;
+  }
 
-    signin() {
-        this.is_active_modal = true;
-        this.is_signin = true;
-        console.log('signin');
-        // TODO: please implement
-    }
+  private signin(): void {
+    this.is_active_modal = true;
+    this.is_signin = true;
+  }
 
-    signout() {
-        console.log('signout');
-        // TODO: please implement
-    }
+  private signout(): void {
+    this.usersService.setCurrentUser(new User());
+  }
 
-    closeModal() {
-        this.is_active_modal = false;
-    }
+  private closeModal(): void {
+    this.is_active_modal = false;
+  }
 
-    submit() {
-        console.log('submit');
-        // TODO: please implement
+  private submit(): void {
+    let request: Observable<Response>;
+    if (this.is_signin) {
+      request = this.http.post(`/api/signin`, this.modal_user);
+    } else {
+      request = this.http.post('/api/signup', this.modal_user);
     }
+    request.subscribe((res) => {
+      let body: object = JSON.parse(res['_body']);
+      console.log(body);
+      let user: User = new User(body);
+      console.log(user);
+      this.usersService.setCurrentUser(user);
+      this.closeModal();
+      this.modal_user = new User();
+    }, (err) => {
+      let body: object = JSON.parse(err['_body']);
+      this.modal_message = `${err.status} ${err.statusText}: ${body['message'] || ''}`;
+    });
+    // TODO: please implement
+  }
 }
