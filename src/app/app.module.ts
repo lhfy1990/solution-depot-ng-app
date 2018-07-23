@@ -12,10 +12,12 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProblemsComponent } from './problems/problems.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'problems', component: ProblemsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -26,7 +28,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     DashboardComponent,
-    FooterComponent
+    FooterComponent,
+    ProblemsComponent
   ],
   imports: [
     BrowserModule,
