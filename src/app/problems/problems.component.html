@@ -1,76 +1,13 @@
 <section>
   <div class="container">
     <div class="columns">
-      <nav class="column is-4-desktop is-6-tablet is-12-mobile panel">
-        <p class="panel-heading">List</p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-small" type="text" placeholder="search by name and tags">
-            <span class="icon is-small is-left"><i class="fas fa-search" aria-hidden="true"></i></span>
-          </p>
-        </div>
-        <a class="panel-block">3 Sum</a>
-        <div class="panel-block level is-mobile">
-          <nav class="level-item pagination is-small is-centered" role="pagination">
-            <ul class="pagination-list">
-              <li><a class="pagination-link">1</a></li>
-              <li><span class="pagination-ellipsis">&hellip;</span></li>
-              <li><a class="pagination-link">1</a></li>
-              <li><a class="pagination-link is-current">1</a></li>
-              <li><a class="pagination-link">1</a></li>
-              <li><span class="pagination-ellipsis">&hellip;</span></li>
-              <li><a class="pagination-link">1</a></li>
-            </ul>
-          </nav>
-        </div>
-      </nav>
+      <app-problem-list class="column is-4-desktop is-6-tablet is-12-mobile">
+      </app-problem-list>
       <div class="column is-8-desktop is-6-tablet is-12-mobile level">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Component
-            </p>
-            <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-              <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-              <br>
-              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Edit</a>
-            <a href="#" class="card-footer-item">Delete</a>
-          </footer>
-        </div>
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Component
-            </p>
-            <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-              <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-              <br>
-              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Edit</a>
-            <a href="#" class="card-footer-item">Delete</a>
-          </footer>
-        </div>
+        <app-problem>
+        </app-problem>
+        <app-solution>
+        </app-solution>
       </div>
     </div>
   </div>

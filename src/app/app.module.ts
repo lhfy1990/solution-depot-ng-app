@@ -13,6 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProblemsComponent } from './problems/problems.component';
+import { ProblemListComponent } from './problem-list/problem-list.component';
+import { ProblemComponent } from './problem/problem.component';
+import { SolutionComponent } from './solution/solution.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,7 +32,10 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     FooterComponent,
-    ProblemsComponent
+    ProblemsComponent,
+    ProblemListComponent,
+    ProblemComponent,
+    SolutionComponent
   ],
   imports: [
     BrowserModule,
