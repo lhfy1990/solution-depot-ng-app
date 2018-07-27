@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./problems.component.css']
 })
 export class ProblemsComponent implements OnInit {
+    private problems: Problem[];
 
   constructor() { }
 
