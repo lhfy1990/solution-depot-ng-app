@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <a class="panel-block is-active">3 Sum</a>
+  <a class="panel-block" [ngClass]="{'is-active': problem === element}" *ngFor="let element of problems" (click)="select($event, element)">{{element.name}}</a>
   <div class="panel-block level is-mobile">
     <nav class="level-item pagination is-small is-centered" role="pagination">
       <ul class="pagination-list">

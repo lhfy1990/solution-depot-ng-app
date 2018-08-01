@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule, Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { UsersService } from './users.service';
+import { ProblemsService } from './problems.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     HttpModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, ProblemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
